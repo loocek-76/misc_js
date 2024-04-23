@@ -1,6 +1,6 @@
 import { BrokerBase } from './BrokerBase.js';
 import neverFail from './NeverFail.js';
-
+import auditObject from './AuditObject.js';
 
 const addTestApi = (broker) => {
   // api.print = (...args) => { console.log('print', args); };
@@ -41,11 +41,20 @@ const neverFailTest = () => {
 // const broker = registerModule('test broker module');
 // testBroker(broker);
   
+const auditObjectTest = () => {
+  const audited = auditObject({});
+  audited.firstName = 'First Name';
+  audited.lastName = 'Last Name';
+  console.log(audited.history);
+};
+
 
 function main() {
   const testObj = neverFailTest();
 
   console.log(testObj.dummy.not.existing.property);
+
+  auditObjectTest();
 }
 
 
